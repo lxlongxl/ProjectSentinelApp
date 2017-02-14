@@ -54,28 +54,30 @@ export default class CrimeApp extends Component {
   }
 
   render() {
-    let realm = new Realm({schema: [CrimeEntrySchema, CoordinatesSchema]})
-    for (var i = 0; i < this.state.crimeData.length; i ++) {
-      var crimeEntry = this.state.crimeData[i];
-      realm.write(() => {
-        realm.create('CrimeEntry', {
-          incident_number: crimeEntry.incident_number,
-          crime: crimeEntry.crime,
-          date: crimeEntry.date,
-          intersection: crimeEntry.intersection,
-          intersection_address: crimeEntry.intersection_address,
-          intersection_city: crimeEntry.intersection_city,
-          intersection_state: crimeEntry.intersection_state,
-          time: crimeEntry.time,
-        })
-      })
-    }
-    console.log(realm.objects('CrimeEntry').length);
+    // let realm = new Realm({schema: [CrimeEntrySchema, CoordinatesSchema]})
+    // for (var i = 0; i < this.state.crimeData.length; i ++) {
+    //   var crimeEntry = this.state.crimeData[i];
+    //   realm.write(() => {
+    //     realm.create('CrimeEntry', {
+    //       incident_number: crimeEntry.incident_number,
+    //       crime: crimeEntry.crime,
+    //       date: crimeEntry.date,
+    //       intersection: crimeEntry.intersection,
+    //       intersection_address: crimeEntry.intersection_address,
+    //       intersection_city: crimeEntry.intersection_city,
+    //       intersection_state: crimeEntry.intersection_state,
+    //       time: crimeEntry.time,
+    //     })
+    //   })
+    // }
+    // console.log(realm.objects('CrimeEntry').length);
 
     return (
       <ViewContainer>
       <Map/>
       </ViewContainer>
+
+
     );
   }
 }
