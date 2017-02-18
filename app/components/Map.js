@@ -5,6 +5,10 @@
 import React, {Component} from 'react';
 import { StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
+import ViewContainer from './ViewContainer.js'
+import ModalExample from './ModalExample.js';
+
+
 
 class Map extends Component {
   constructor(){
@@ -21,11 +25,17 @@ class Map extends Component {
 
   render() {
     return (
+      <ViewContainer>
         <MapView
            style={styles.map}
           region = {this.state.initialRegion}
           />
+<<<<<<< HEAD
 
+=======
+        <ModalExample/>
+      </ViewContainer>
+>>>>>>> 91681a7b79cbd68dca9945d7ea5bad5ea6015987
     );
   }
 }

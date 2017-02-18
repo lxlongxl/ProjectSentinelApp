@@ -32,19 +32,18 @@ export default class CrimeApp extends Component {
 
   }
 
-    componentWillUnmount(){
-
-    }
-
   render() {
     return (
       <Router>
         <Scene key='root' style={{paddingTop: 64}}>
           <Scene key='home' component={Map} title='Project Sentinel' initial={true} />
-        
         </Scene>
       </Router>
       //<Map/>
+
+      <ViewContainer>
+      <Map/>
+      </ViewContainer>
     );
   }
 }
