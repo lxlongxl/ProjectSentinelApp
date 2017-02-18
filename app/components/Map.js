@@ -25,6 +25,7 @@ class Map extends Component {
            style={styles.map}
           region = {this.state.initialRegion}
           />
+
     );
   }
 }
