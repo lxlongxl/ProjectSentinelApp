@@ -10,16 +10,11 @@
   "dependencies": {
     "flow": "^0.2.3",
     "react": "~15.4.0",
-    "react-native": "0.41.2",
+    "react-native": "^0.41.2",
     "react-native-elements": "^0.9.6",
     "react-native-maps": "^0.13.0",
-<<<<<<< HEAD
     "react-native-router-flux": "^3.37.0",
-    "react-native-sqlite-storage": "^3.2.2",
-=======
->>>>>>> 91681a7b79cbd68dca9945d7ea5bad5ea6015987
-    "react-native-vector-icons": "^4.0.0",
-    "realm": "^1.0.2"
+    "react-native-vector-icons": "^4.0.0"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",

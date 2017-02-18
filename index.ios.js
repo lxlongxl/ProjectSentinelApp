@@ -39,11 +39,6 @@ export default class CrimeApp extends Component {
           <Scene key='home' component={Map} title='Project Sentinel' initial={true} />
         </Scene>
       </Router>
-      //<Map/>
-
-      <ViewContainer>
-      <Map/>
-      </ViewContainer>
     );
   }
 }
