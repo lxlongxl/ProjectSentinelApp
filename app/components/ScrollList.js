@@ -1,7 +1,6 @@
 'use strict'
 
 import React, {Component} from 'react';
-import ScrollList from './ScrollList.js';     /* Is this Needed? */
 import {
   ScrollView,
   Text,
@@ -14,40 +13,33 @@ class ScrollList extends Component {
     render(){
       return(
           <View style={styles.container}>
-          <ScrollView
-              <View style={styles.text}>
-                  <Text>asassssass</Text>
+          <ScrollView>
+              <View>
+                  <Text style = {styles.text}>asassssass</Text>
               </View>
           </ScrollView>
-      /*  <TouchableOpacity
-              style={styles.button}
-              onPress={() => { _scrollView.scrollTo({y: 0}); }}>
-              <Text>Scroll to top</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => { _scrollView.scrollToEnd({animated: true}); }}>
-              <Text>Scroll to bottom</Text>
-              </TouchableOpacity>
-  */
+
           </View>
 
-    ),
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: 40,
-    width: 50,
-    backgroundColor: 'mistyrose',
+    height: 100,
+    width: 100,
+    top: 1,
+    bottom: 200,
+    alignItems: 'center',
     borderWidth: 2,
-    borderColor: 'black'
-    padding: 5,
+    borderColor: 'black',
+    padding: 5
   },
   text: {
     fontSize: 20,
-    color: '#888888'
+    color: '#888888',
+    justifyContent: 'center',
     left: 80,
     top: 20,
     height: 40,
