@@ -3,12 +3,15 @@
 'use strict'
 
 import React, {Component} from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ListView, AsyncStorage } from 'react-native';
 import MapView from 'react-native-maps';
 import ViewContainer from './ViewContainer.js';
 import ScrollList from './ScrollList.js';
-
-
+const baseUrl = 'http://sentinelweb.9qqamtpp2r.us-east-1.elasticbeanstalk.com/getCrimeData.json';
+const crimeData = {
+  simpleAssaultCrimes: [],
+  
+};
 
 class Map extends Component {
   constructor(){
@@ -19,9 +22,24 @@ class Map extends Component {
         longitude:	-122.4376,
         latitudeDelta:0.0222,
         longitudeDelta:0.0501
-      }
+      },
+      crimeData : crimeData,
     };
   }
+
+  componentWillMount() {
+    fetch(baseUrl)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson);
+      this.state.crimeData.simpleAssaultCrimes = responseJson.simpleAssaultCrimes;
+      console.log(this.state.crimeData);
+    }).catch(function(error) {
+    })
+    .done();
+  }
+
+  async
 
   render() {
     return (

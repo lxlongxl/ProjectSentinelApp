@@ -11,7 +11,6 @@ import { Router, Scene, Actions } from 'react-native-router-flux';
 import { AppRegistry, StyleSheet, Text, View, Modal, TouchableHighlight, ListView } from 'react-native';
 const baseUrl = 'http://custom-env.cvpedt9356.us-east-1.elasticbeanstalk.com/getCrimeData.json';
 
-
 export default class CrimeApp extends Component {
   constructor() {
     super();
