@@ -3,10 +3,12 @@
 'use strict'
 
 import React, {Component} from 'react';
-import { StyleSheet, View, ListView, AsyncStorage } from 'react-native';
+import { StyleSheet, View, TouchableHighlight, Text } from 'react-native';
 import MapView from 'react-native-maps';
 import ViewContainer from './ViewContainer.js';
-import ScrollList from './ScrollList.js';
+import CrimeList from './CrimeList.js';
+import CrimeButton from './CrimeButton.js';
+import renderIf from './renderIf.js';
 const baseUrl = 'http://sentinelweb.9qqamtpp2r.us-east-1.elasticbeanstalk.com/getCrimeData.json';
 const crimeData = {
   simpleAssaultCrimes: [],
@@ -41,14 +43,22 @@ class Map extends Component {
         longitudeDelta:0.0501
       },
       crimeData : crimeData,
+      selectedCrime : crimeData,
+      status : false,
     };
+  }
+
+  toggleStatus(){
+    this.setState({
+      status:!this.state.status
+    });
+    console.log('toggle button handler: '+ this.state.status);
   }
 
   componentWillMount() {
     fetch(baseUrl)
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log(responseJson);
       this.state.crimeData.simpleAssaultCrimes = responseJson.simpleAssaultCrimes;
       this.state.crimeData.motorVehicleTheftCrimes = responseJson.motorVehicleTheftCrimes;
       this.state.crimeData.theftFromMotorVehicleCrimes = responseJson.theftFromMotorVehicleCrimes;
@@ -68,14 +78,10 @@ class Map extends Component {
       this.state.crimeData.theftFromBuildingCrimes = responseJson.theftFromBuildingCrimes;
       this.state.crimeData.falsePretensesSwindleConfidenceGameCrimes = responseJson.falsePretensesSwindleConfidenceGameCrimes;
       this.state.crimeData.allOtherLarcenyCrimes = responseJson.allOtherLarcenyCrimes;
-
-      console.log(this.state.crimeData);
     }).catch(function(error) {
     })
     .done();
   }
-
-  async
 
   render() {
     return (
@@ -86,9 +92,16 @@ class Map extends Component {
           region = {this.state.initialRegion}
           />
       </ViewContainer>
-      <View>
-        <ScrollList/>
-      </View>
+      {renderIf(this.state.status)(
+        <View style = {styles.popup}>
+          <CrimeList/>
+        </View>
+      )}
+      <TouchableHighlight underlayColor = 'white' onPress={()=>this.toggleStatus()}>
+        <Text style={{color: 'dodgerblue'}}>
+          Filter Crimes
+        </Text>
+      </TouchableHighlight>
       </ViewContainer>
     );
   }
@@ -103,12 +116,13 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   popup: {
-    height: 100,
-    width: 100,
+    height: 550,
+    width: 270,
     top: 1,
-    bottom: 200,
+    alignItems: 'center',
     borderWidth: 2,
-    padding: 5
+    borderColor: 'black',
+    backgroundColor: 'white',
   }
 })
 module.exports = Map
