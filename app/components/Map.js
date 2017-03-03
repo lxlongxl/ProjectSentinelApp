@@ -44,15 +44,7 @@ class Map extends Component {
       },
       crimeData : crimeData,
       selectedCrime : crimeData,
-      status : false,
     };
-  }
-
-  toggleStatus(){
-    this.setState({
-      status:!this.state.status
-    });
-    console.log('toggle button handler: '+ this.state.status);
   }
 
   componentWillMount() {
@@ -86,23 +78,12 @@ class Map extends Component {
   render() {
     return (
       <ViewContainer>
-      <ViewContainer>
         <MapView
            style={styles.map}
           region = {this.state.initialRegion}
           />
       </ViewContainer>
-      {renderIf(this.state.status)(
-        <View style = {styles.popup}>
-          <CrimeList/>
-        </View>
-      )}
-      <TouchableHighlight underlayColor = 'white' onPress={()=>this.toggleStatus()}>
-        <Text style={{color: 'dodgerblue'}}>
-          Filter Crimes
-        </Text>
-      </TouchableHighlight>
-      </ViewContainer>
+
     );
   }
 }
@@ -115,14 +96,5 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
-  popup: {
-    height: 550,
-    width: 270,
-    top: 1,
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: 'black',
-    backgroundColor: 'white',
-  }
 })
 module.exports = Map
